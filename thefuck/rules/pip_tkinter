@@ -1,0 +1,12 @@
+from thefuck.utils import for_app
+from thefuck.specific.sudo import sudo_support
+
+
+@sudo_support
+@for_app('pip', 'pip2', 'pip3')
+def match(command):
+    return ('pip' in command.script and 'No matching distribution found for tkinter' in command.output)
+
+
+def get_new_command(command):
+    return command.script.replace(' tkinter',' tk')
